@@ -47,7 +47,7 @@ namespace i544c {
 
             foreach (GameObject obj in objects)
             {
-                obj.SetActive(isActive);
+                if (obj != null) obj.SetActive(isActive);
             }
         }
 
