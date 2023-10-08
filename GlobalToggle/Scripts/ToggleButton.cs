@@ -8,8 +8,11 @@ namespace i544c {
     [UdonBehaviourSyncMode(BehaviourSyncMode.Manual)]
     public class ToggleButton : UdonSharpBehaviour
     {
+        [Header("[任意] 設定オブジェクトを入れると押せるユーザーを制限できます")]
+        [SerializeField] private Config config;
+
         [Header("初期状態を設定")]
-        [UdonSynced, FieldChangeCallback(nameof(isActive))] public bool _isActive = false;
+        private bool _isActive = false;
         private bool isActive {
             get => _isActive;
             set {
@@ -30,11 +33,15 @@ namespace i544c {
         {
             switchOff = switches[0];
             switchOn  = switches[1];
-            ToggleObjects(); // 初期状態の反映のため
+
+            // 初期状態の反映のため
+            if (isActive) ToggleObjects();
         }
 
         public override void Interact()
         {
+            if (config && !config.IsAdmin(Networking.LocalPlayer.displayName)) return;
+
             Networking.SetOwner(Networking.LocalPlayer, gameObject); // 同期変数変更のため
             isActive = !isActive;
             RequestSerialization();
@@ -47,7 +54,8 @@ namespace i544c {
 
             foreach (GameObject obj in objects)
             {
-                if (obj != null) obj.SetActive(isActive);
+                if (obj == null) continue;
+                obj.SetActive(!obj.activeSelf);
             }
         }
 
