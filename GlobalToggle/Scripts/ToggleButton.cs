@@ -12,7 +12,7 @@ namespace i544c {
         [SerializeField] private Config config;
 
         [Header("初期状態を設定")]
-        private bool _isActive = false;
+        [UdonSynced, FieldChangeCallback(nameof(isActive))] private bool _isActive = false;
         private bool isActive {
             get => _isActive;
             set {
