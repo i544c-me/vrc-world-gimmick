@@ -8,13 +8,13 @@ namespace i544c
 {
     public class Config : UdonSharpBehaviour
     {
-        public string[] admin_usernames;
+        public string[] adminUsernames;
 
         public bool IsAdmin(string username)
         {
-            foreach (string admin_username in admin_usernames)
+            foreach (string adminUsername in adminUsernames)
             {
-                if (admin_username == username) return true;
+                if (adminUsername == username) return true;
             }
             return false;
         }
