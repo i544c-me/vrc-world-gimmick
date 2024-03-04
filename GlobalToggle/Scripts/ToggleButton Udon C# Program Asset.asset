@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c333ccfdd0cbdbc4ca30cef2dd6e6b9b, type: 3}
   m_Name: ToggleButton Udon C# Program Asset
   m_EditorClassIdentifier: 
-  serializedUdonProgramAsset: {fileID: 11400000, guid: 6cf6011e26cfdf44997da9fde2e5b4ba,
+  serializedUdonProgramAsset: {fileID: 11400000, guid: 84ea965938e4e534f8b5e74d5adca3ad,
     type: 2}
   udonAssembly: 
   assemblyError: 
